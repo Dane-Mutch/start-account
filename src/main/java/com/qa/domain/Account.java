@@ -1,11 +1,22 @@
 package com.qa.domain;
 
+import javax.persistence.*;
+import javax.validation.constraints.*;
+
+@Entity
+@Table (name="Account")
 public class Account {
-
+	
+	
+	@Column(length=50)
 	private String firstName;
+	@Column(length=50)
 	private String secondName;
+	@Id
 	private String accountNumber;
-
+	
+	
+	
 	public Account(String firstName, String secondName, String accountNumber) {
 		this.firstName = firstName;
 		this.secondName = secondName;
