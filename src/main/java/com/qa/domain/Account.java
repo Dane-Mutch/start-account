@@ -1,7 +1,6 @@
 package com.qa.domain;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
 
 @Entity
 @Table (name="Account")

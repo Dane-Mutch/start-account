@@ -9,14 +9,14 @@ import com.qa.util.JSONUtil;
 
 public class AccountServiceTest {
 
-	private AccountService service;
+	private AccountMapImp service;
 	private Account joeBloggs;
 	private Account janeBloggs;
 	private JSONUtil util;
 
 	@Before
 	public void init() {
-		service = new AccountService();
+		service = new AccountMapImp();
 		joeBloggs = new Account("Joe", "Bloggs", "1336");
 		janeBloggs = new Account("Jane", "Bloggs", "1337");
 		util = new JSONUtil();

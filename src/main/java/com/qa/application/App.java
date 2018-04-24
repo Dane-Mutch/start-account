@@ -1,13 +1,13 @@
 package com.qa.application;
 
 import com.qa.domain.Account;
-import com.qa.service.AccountService;
+import com.qa.service.AccountMapImp;
 import com.qa.util.JSONUtil;
 
 public class App {
 
 	public static void main(String[] args) {
-		AccountService service = new AccountService();
+		AccountMapImp service = new AccountMapImp();
 		JSONUtil util = new JSONUtil();
 		Account joeBloggs = new Account("Joe", "Bloggs", "1336");
 		Account janeBloggs = new Account("Jane", "Bloggs", "1337");
