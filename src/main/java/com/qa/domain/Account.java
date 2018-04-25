@@ -12,11 +12,11 @@ public class Account {
 	@Column(length=50)
 	private String secondName;
 	@Id
-	private String accountNumber;
+	private int accountNumber;
 	
 	
 	
-	public Account(String firstName, String secondName, String accountNumber) {
+	public Account(String firstName, String secondName, int accountNumber) {
 		this.firstName = firstName;
 		this.secondName = secondName;
 		this.accountNumber = accountNumber;
@@ -38,11 +38,11 @@ public class Account {
 		this.secondName = secondName;
 	}
 
-	public String getAccountNumber() {
+	public int getAccountNumber() {
 		return accountNumber;
 	}
 
-	public void setAccountNumber(String accountNumber) {
+	public void setAccountNumber(int accountNumber) {
 		this.accountNumber = accountNumber;
 	}
 

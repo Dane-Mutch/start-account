@@ -1,4 +1,4 @@
-package com.qa.service;
+package com.qa.service.repository;
 
 import java.util.List;
 
@@ -16,7 +16,7 @@ import com.qa.domain.Account;
 import com.qa.util.JSONUtil;
 
 @Transactional(SUPPORTS)
-public class AccountDBImpl {
+public class AccountDBImplementation implements AccountRepository {
 
 @PersistenceContext	(unitName = "primary")
 private EntityManager em;
@@ -33,20 +33,20 @@ private JSONUtil util;
 	return util.getJSONForObject(resultsList);
 	}
 	
-	public Account findAccountByAccountNumber(String accountNumber) {
-		return em.find(Account.class, accountNumber);
+	public Account findAccountByAccountNumber(int accountNumber) {
+		return (em.find(Account.class, accountNumber));
 	}
 	
 	@Transactional(REQUIRED)
-	public String createAccount(String accountToAdd) {
+	public String addAccount(String accountToAdd) {
 		Account persistingAccount = util.getObjectForJSON(accountToAdd, Account.class);
 		em.persist(persistingAccount);
 		return "{\"message\": \"account successfully created\"}";
 	}
 	
 	@Transactional(REQUIRED)
-	public String deleteAccount(String accountNumber) {
-		Account anAccount = findAccountByAccountNumber(accountNumber);
+	public String removeAccount(int accountNumber) {
+		Account anAccount = util.getObjectForJSON(findAccountByAccountNumber(accountNumber), Account.class);
 		if (anAccount != null) { 
 			em.remove(anAccount);
 		}
@@ -54,8 +54,8 @@ private JSONUtil util;
 	}
 	
 	@Transactional(REQUIRED)
-	public String editAccountLastName(String accountNumber) {
-		Account anAccount = findAccountByAccountNumber(accountNumber);
+	public String updateAccount(int accountNumber, String account) {
+		Account anAccount = util.getObjectForJSON(findAccountByAccountNumber(accountNumber), Account.class);
 		if (anAccount != null ) {
 		anAccount.setSecondName("File");
 			em.merge(anAccount);
